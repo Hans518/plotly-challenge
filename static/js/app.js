@@ -6,6 +6,8 @@ function seeData() {
     console.log(data);
   });
 }
+
+// Init function that populates the first name in the list by hard coding it into the function. 
 function init(val){
   console.log(val);
   getMetaData(940);
@@ -13,6 +15,7 @@ function init(val){
   bubbleChart(940);
 }
 
+// Function to detect the change from index.html
 function optionChanged(val){
   console.log(val);
   getMetaData(val);
@@ -20,6 +23,7 @@ function optionChanged(val){
   bubbleChart(val);
 }
 
+// Load the names into a function to populate dropdown. 
 function getIDs(){
   d3.json(sampleData).then(function(data) {
     var names = data.names;
@@ -32,8 +36,9 @@ function getIDs(){
     };
   });
 }
-function getMetaData(val) {
 
+// Extract the test subject array and add to variables
+function getMetaData(val) {
   d3.json(sampleData).then(function(data) {
       
       var metadata = data.metadata;
@@ -49,6 +54,7 @@ function getMetaData(val) {
           }
 
         }
+      // Append test subject data to panel.   
       var pbody = d3.select(".panel-body");
       pbody.selectAll("h6").remove();
       pbody.append("h6").text(`ID: ${id}`); 
@@ -59,7 +65,8 @@ function getMetaData(val) {
       pbody.append("h6").text(`Wash Frequency: ${wfreq}`); 
   });   
   };
-  
+
+// Extract sample data   
 function getSampless(val) {
   
   d3.json(sampleData).then(function(data){
@@ -76,6 +83,7 @@ function getSampless(val) {
         var otu_labels_g = otu_labels.slice(0,10);
       };
     }
+    // Bar Plot
     var trace1 = [{
       type: 'bar',
       x: sample_values_g,
@@ -89,6 +97,7 @@ function getSampless(val) {
   });
 }
 
+// Bubble plot
 function bubbleChart(val) {
 
   d3.json(sampleData).then(function(data){
@@ -128,6 +137,7 @@ function bubbleChart(val) {
   }
 })
 }
+
 
 init();
 //seeData();
